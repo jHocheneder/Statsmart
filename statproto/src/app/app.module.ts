@@ -10,7 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatenComponent } from './components/daten/daten.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfilComponent } from './components/profil/profil.component';
-
+import {RouterModule, Routes} from '@angular/router';
+const routes: Routes = [
+  {path: 'home', component: HomeComponent},
+  {path: 'profil', component: ProfilComponent},
+  {path: 'daten', component: DatenComponent},
+  {path: 'chart', component: ChartComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +30,8 @@ import { ProfilComponent } from './components/profil/profil.component';
     AppRoutingModule,
     ChartModule,
     ClarityModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

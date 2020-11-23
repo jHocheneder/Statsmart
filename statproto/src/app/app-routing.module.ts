@@ -7,28 +7,10 @@ import { ProfilComponent } from './components/profil/profil.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'daten',
-    component: DatenComponent
-  },
-  {
-    path: 'profil',
-    component: ProfilComponent
-  },
-  {
-    path: 'chart',
-    component: ChartComponent
-  }
-
+  {path: 'home', component: HomeComponent},
+  {path: 'daten', component: DatenComponent},
+  {path: 'profil', component: ProfilComponent},
+  {path: 'chart', component: ChartComponent}
 ];
 
 @NgModule({
