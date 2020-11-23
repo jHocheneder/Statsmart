@@ -7,11 +7,17 @@ import { ChartModule } from 'angular-highcharts';
 import { ChartComponent } from './chart/chart.component';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatenComponent } from './components/daten/daten.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChartComponent
+    ChartComponent,
+    DatenComponent,
+    HomeComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
