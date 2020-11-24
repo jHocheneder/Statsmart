@@ -11,6 +11,8 @@ import { DatenComponent } from './components/daten/daten.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import {RouterModule, Routes} from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'profil', component: ProfilComponent},
@@ -31,6 +33,7 @@ const routes: Routes = [
     ChartModule,
     ClarityModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
