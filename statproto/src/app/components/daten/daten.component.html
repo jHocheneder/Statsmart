@@ -1,1 +1,23 @@
-<app-chart></app-chart>
+<clr-datagrid id="datagrid" [(clrDgSelected)]="selected" [clrDgRowSelection]="true">
+
+    <clr-dg-action-bar>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-secondary" [disabled]="selected?.length == 0"><clr-icon shape="pencil"></clr-icon>Analysieren</button>
+        </div>
+    </clr-dg-action-bar>
+
+    <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
+    <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let link of daten" [clrDgItem]="link" [clrDgSelectable]="locked(link)" (click)="getDownloadLink(link)">
+        <clr-dg-cell>{{link.id+1}}</clr-dg-cell>
+        <clr-dg-cell>{{link.title}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="50">
+            <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Daten pro Seite</clr-dg-page-size>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Einträge
+        </clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>
