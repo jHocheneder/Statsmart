@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Link } from '../models/link';
 
 const baseUrl = 'http://localhost:8080/'
@@ -16,6 +16,19 @@ export class HttpService {
   }
 
   public getLink(t: Link){
-    return this.http.get<string>(baseUrl + "api/downloadLinks/"+t.id)
+    return this.http.get<Link[]>(baseUrl + "api/downloadLinks/"+t.id)
+  }
+
+  public getDownloadLink(l){
+    let body = {
+      link: l
+    }
+    return this.http.post(baseUrl + "api/download", body, {responseType: 'text'})
+  }
+
+  public downloadCSV(link){
+    let headers = new HttpHeaders({Accept: 'text/csv'})
+    let responseType: 'text'
+    return this.http.get('https://www.cdc.gov/coronavirus/2019-ncov/map-data-cases.csv', {responseType: 'text'})
   }
 }

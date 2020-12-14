@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service'
+import { DataService } from '../../services/data.service'
 import { Link } from '../../models/link'
 import { ClrDatagridStateInterface } from '@clr/angular';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-daten',
@@ -13,9 +15,13 @@ export class DatenComponent implements OnInit {
   users: any;
   selected = [];
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, 
+    private router: Router,
+    private data: DataService) { }
 
   daten: Link[] = []
+
+
   
   ngOnInit(): void {
     this.getList()
@@ -25,7 +31,6 @@ export class DatenComponent implements OnInit {
     this.http.getList().subscribe(data => {
       this.daten = []
       this.daten = data
-      
     })
   }
 
@@ -37,9 +42,10 @@ export class DatenComponent implements OnInit {
     return this.daten
   }
 
-  getDownloadLink(link: any) {
+  getDownloadLink(link: Link) {
     this.http.getLink(link).subscribe(data => {
       console.log(data)
+      link.detail = data
     })
   }
 
@@ -48,6 +54,11 @@ export class DatenComponent implements OnInit {
       return false
     }
     return true
+  }
+
+  analyze() {
+    this.data.selected = this.selected;
+    this.router.navigate(['/customize']);
   }
 
 }

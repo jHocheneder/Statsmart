@@ -2,7 +2,7 @@
 
     <clr-dg-action-bar>
         <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-secondary" [disabled]="selected?.length == 0"><clr-icon shape="pencil"></clr-icon>Analysieren</button>
+            <button type="button" class="btn btn-sm btn-secondary" [disabled]="selected?.length == 0" (click)="analyze()"><clr-icon shape="pencil"></clr-icon>Analysieren</button>
         </div>
     </clr-dg-action-bar>
 
@@ -12,6 +12,21 @@
     <clr-dg-row *clrDgItems="let link of daten" [clrDgItem]="link" [clrDgSelectable]="locked(link)" (click)="getDownloadLink(link)">
         <clr-dg-cell>{{link.id+1}}</clr-dg-cell>
         <clr-dg-cell>{{link.title}}</clr-dg-cell>
+
+        <clr-dg-row-detail *clrIfExpanded>
+            <ng-container ngProjectAs="clr-dg-row-detail" *ngIf="selected.includes(link)">
+                <clr-dg-row-detail *clrIfExpanded>
+                    <div class="detail">
+                        <div *ngFor="let l of link.detail" > 
+                            <div *ngIf="l.type === 'CSV'">
+                                {{l.title}} Type: {{l.type}}
+                            </div>
+                        </div>
+                    </div>
+                    
+                </clr-dg-row-detail>
+              </ng-container>
+        </clr-dg-row-detail>
     </clr-dg-row>
 
     <clr-dg-footer>
