@@ -11,10 +11,14 @@ import { DatenComponent } from './components/daten/daten.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import {RouterModule, Routes} from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { CustomizeComponent } from './components/customize/customize.component';
+
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'profil', component: ProfilComponent},
   {path: 'daten', component: DatenComponent},
+  {path: 'customize', component: CustomizeComponent},
   {path: 'chart', component: ChartComponent}
 ]
 @NgModule({
@@ -23,7 +27,8 @@ const routes: Routes = [
     ChartComponent,
     DatenComponent,
     HomeComponent,
-    ProfilComponent
+    ProfilComponent,
+    CustomizeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,7 @@ const routes: Routes = [
     ChartModule,
     ClarityModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
