@@ -26,9 +26,10 @@ export class CustomizeComponent implements OnInit {
   getDownloadLink() {
     for(let i = 0; i<this.selected.length; i++){
       this.http.getDownloadLink(this.selected[i].detail[0].link).subscribe(data=>{
-        this.http.downloadCSV(data).subscribe(csv=>{
+        console.log(data)
+        /*this.http.downloadCSV(data).subscribe(csv=>{
           console.log(csv)
-        })
+        })*/
       })
     }
   }
