@@ -1,1 +1,38 @@
-<p>customize works!</p>
+<div id="customizebody">
+    <div class="clr-col-lg-12 clr-col-12 axes">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Wähle eine Spalte für die x-Achse aus</h3>
+                    <select clrSelect name="options" [(ngModel)]="x" >
+                        <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
+                    </select>
+            </div>
+            <div class="card-footer">
+                <!--<a href="..." class="btn btn-sm btn-link">Action 1</a>!-->
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Wähle eine Spalte für die erste y-Achse aus</h3>
+                    <select clrSelect name="options" [(ngModel)]="y1">
+                        <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
+                    </select>
+            </div>
+            <div class="card-footer">
+                <!--<a href="..." class="btn btn-sm btn-link">Action 1</a>!-->
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Wähle eine Spalte für die zweite y-Achse aus</h3>
+                    <select clrSelect name="options" [(ngModel)]="y2">
+                        <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
+                    </select>
+            </div>
+            <div class="card-footer">
+                <!--<a href="..." class="btn btn-sm btn-link">Action 1</a>!-->
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-link" (click)="showData()">Anzeigen</button>
+</div>

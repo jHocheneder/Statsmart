@@ -1,0 +1,13 @@
+#customizebody {
+    width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+.axes {
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+    margin: 10px;
+}
