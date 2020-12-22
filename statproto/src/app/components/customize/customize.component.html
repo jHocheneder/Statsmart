@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-block">
                 <h3 class="card-title">Wähle eine Spalte für die x-Achse aus</h3>
-                    <select clrSelect name="options" [(ngModel)]="x" (change)="showData()">
+                    <select clrSelect name="options" [(ngModel)]="x" >
                         <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
                     </select>
             </div>
@@ -34,4 +34,5 @@
             </div>
         </div>
     </div>
+    <button class="btn btn-link" (click)="showData()">Anzeigen</button>
 </div>
