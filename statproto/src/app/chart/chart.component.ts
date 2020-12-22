@@ -12,26 +12,26 @@ export class ChartComponent implements OnInit {
   
    linechart : Chart
   
-    @Input()
     xaxis: string[] = []
-    @Input()
     yone: number[] = []
-    @Input()
     ytwo: number[] = []
 
   constructor(public data : DataService) { }
 
   ngOnInit(): void {
-    console.log(this.data.loadedStatistic.title);
-    this.newChart();
-    this.data.loadedStatistic.data = [3000,4000,5000,4500,4200,4900,4700];
   }
 
   newChart() {
-    this.linechart = new Chart({
+/*    this.xaxis = this.data.xaxis
+    this.yone = this.data.y1axis
+    this.ytwo = this.data.y2axis
+*/
+    console.log("Chart zeichenen")
+    console.log(this.data.loadedStatistic.ydos)
 
+    this.linechart = new Chart({
       title: {
-        text: this.data.loadedStatistic.title
+        text: "Statistik"
       },
       credits: {
         enabled: false
@@ -41,19 +41,19 @@ export class ChartComponent implements OnInit {
         labels: {
          
         },
-        categories: this.xaxis
+        categories: this.data.loadedStatistic.xaxis
       },
       series: [
 
         {
           type: 'line',
           name: 'Österreich',
-          data: this.yone
+          data: this.data.loadedStatistic.yuno
         },
         {
           type: 'line',
           name: 'OÖ',
-          data: this.ytwo
+          data: this.data.loadedStatistic.ydos
         },
 
       ]

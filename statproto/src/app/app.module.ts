@@ -41,7 +41,9 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    ChartComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

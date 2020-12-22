@@ -1,4 +1,6 @@
 export class Statistic {
     title: string;
-    data : number[];
+    xaxis: any[];
+    yuno: any[];
+    ydos: any[];
 }

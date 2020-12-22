@@ -15,18 +15,16 @@ export class DatenComponent implements OnInit {
   users: any;
   selected = [];
 
-  constructor(private http: HttpService,
+  constructor(private http: HttpService, 
     private router: Router,
     private data: DataService) { }
 
   daten: Link[] = []
 
 
-
+  
   ngOnInit(): void {
     this.getList()
-    this.data.loadedStatistic.title = "Unnedigkeitsfaktor";
-    this.data.loadedStatistic.data = [3000,4000,5000,4500,4200,4900,4700];
   }
 
   getList(){

@@ -9,6 +9,10 @@ export class DataService {
 
   selected: Link[] = []
 
+  /*xaxis = []
+  y1axis = []
+  y2axis = []*/
+
   loadedStatistic: Statistic = new Statistic();
 
   constructor() { }
