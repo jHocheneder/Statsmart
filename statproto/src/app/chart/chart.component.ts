@@ -13,8 +13,11 @@ export class ChartComponent implements OnInit {
    linechart : Chart
   
     @Input()
-    values: number[] = []
-
+    xaxis: String[] = []
+    @Input()
+    yone: number[] = []
+    @Input()
+    ytwo: number[] = []
 
   constructor(public data : DataService) { }
 

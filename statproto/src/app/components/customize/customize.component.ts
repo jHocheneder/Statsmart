@@ -12,7 +12,9 @@ import { HttpService } from 'src/app/services/http.service';
 export class CustomizeComponent implements OnInit {
 
   selected: Link[];
-
+  arrayx = []
+  arrayy1 = []
+  arrayy2 = []
   x = ""
   y1 = ""
   y2 = ""
@@ -52,17 +54,15 @@ export class CustomizeComponent implements OnInit {
   }
 
   showData(){
-    let arrayx = []
-    let arrayy1 = []
-    let arrayy2 = []
+    
     for(let i = 1; i < this.statData.length-1; i++){
-      arrayx.push(this.statData[i][this.x])
-      arrayy1.push(this.statData[i][this.y1])
-      arrayy2.push(this.statData[i][this.y2])
+      this.arrayx.push(this.statData[i][this.x])
+      this.arrayy1.push(this.statData[i][this.y1])
+      this.arrayy2.push(this.statData[i][this.y2])
     }
-    console.log(arrayx)
-    console.log(arrayy1)
-    console.log(arrayy2)
+    console.log(this.arrayx)
+    console.log(this.arrayy1)
+    console.log(this.arrayy2)
   }
 
 }
