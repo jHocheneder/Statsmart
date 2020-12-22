@@ -58,7 +58,10 @@ export class CustomizeComponent implements OnInit {
   }
 
   showData(){
-    
+    this.arrayx = []
+    this.arrayy1 = []
+    this.arrayy2 = []
+
     for(let i = 1; i < this.statData.length-1; i++){
       if(+this.statData[i][this.x]){
         this.arrayx.push(+this.statData[i][this.x])
@@ -107,12 +110,12 @@ export class CustomizeComponent implements OnInit {
 
         {
           type: 'line',
-          name: 'Österreich',
+          name: this.statData[0][this.y1],
           data: this.arrayy1
         },
         {
           type: 'line',
-          name: 'OÖ',
+          name: this.statData[0][this.y2],
           data: this.arrayy2
         },
 
