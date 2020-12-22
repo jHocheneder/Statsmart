@@ -13,6 +13,7 @@ import { ProfilComponent } from './components/profil/profil.component';
 import {RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomizeComponent } from './components/customize/customize.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [
     ClarityModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Link } from '../models/link';
+import { Observable } from 'rxjs';
 
 const baseUrl = 'http://localhost:8080/'
 
@@ -27,8 +28,9 @@ export class HttpService {
   }
 
   public downloadCSV(link){
-    let headers = new HttpHeaders({Accept: 'text/csv'})
-    let responseType: 'text'
-    return this.http.get('https://www.cdc.gov/coronavirus/2019-ncov/map-data-cases.csv', {responseType: 'text'})
+    let body = {
+      link: link
+    }
+    return this.http.post<string[][]>(baseUrl+'api/downloadcsv', body);
   }
 }
