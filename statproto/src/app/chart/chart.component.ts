@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import * as Highcharts from 'highcharts';
+import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
@@ -7,25 +9,26 @@ import { Chart } from 'angular-highcharts';
 })
 export class ChartComponent implements OnInit {
 
-  @Input()
-  charttitle = "";
+  
    linechart : Chart
+  
+    @Input()
+    values: number[] = []
 
 
-
-  constructor() { }
+  constructor(public data : DataService) { }
 
   ngOnInit(): void {
-    console.log(this.charttitle);
+    console.log(this.data.loadedStatistic.title);
     this.newChart();
-
+    this.data.loadedStatistic.data = [3000,4000,5000,4500,4200,4900,4700];
   }
 
   newChart() {
     this.linechart = new Chart({
 
       title: {
-        text: this.charttitle
+        text: this.data.loadedStatistic.title
       },
       credits: {
         enabled: false
@@ -33,16 +36,16 @@ export class ChartComponent implements OnInit {
       xAxis: {
         type: 'datetime',
         labels: {
-          format: '{value:%Y-%m-%d}',
-
-        }
+         
+        },
+        categories: ['Apples', 'Bananas', 'Oranges']
       },
       series: [
 
         {
           type: 'line',
           name: 'Österreich',
-          data: [9262, 9586, 7063, 5665, 4657, 5984]
+          data: this.data.loadedStatistic.data
         },
         {
           type: 'line',

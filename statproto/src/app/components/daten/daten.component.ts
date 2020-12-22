@@ -25,6 +25,8 @@ export class DatenComponent implements OnInit {
 
   ngOnInit(): void {
     this.getList()
+    this.data.loadedStatistic.title = "Unnedigkeitsfaktor";
+    this.data.loadedStatistic.data = [3000,4000,5000,4500,4200,4900,4700];
   }
 
   getList(){
