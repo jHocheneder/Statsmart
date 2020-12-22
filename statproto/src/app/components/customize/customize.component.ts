@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Link } from 'src/app/models/link';
 import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
-
+import { ChartComponent } from '../../chart/chart.component';
 @Component({
   selector: 'app-customize',
   templateUrl: './customize.component.html',
@@ -25,7 +25,8 @@ export class CustomizeComponent implements OnInit {
 
   statData
 
-  constructor(private route: ActivatedRoute,
+  constructor(public chart: ChartComponent,
+    private route: ActivatedRoute,
     private data: DataService,
     private http: HttpService) { }
 
@@ -63,6 +64,7 @@ export class CustomizeComponent implements OnInit {
     console.log(this.arrayx)
     console.log(this.arrayy1)
     console.log(this.arrayy2)
+    this.chart.newChart();
   }
 
 }
