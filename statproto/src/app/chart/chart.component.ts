@@ -13,7 +13,7 @@ export class ChartComponent implements OnInit {
    linechart : Chart
   
     @Input()
-    xaxis: String[] = []
+    xaxis: string[] = []
     @Input()
     yone: number[] = []
     @Input()
@@ -37,23 +37,23 @@ export class ChartComponent implements OnInit {
         enabled: false
       },
       xAxis: {
-        type: 'datetime',
+        
         labels: {
          
         },
-        categories: ['Apples', 'Bananas', 'Oranges']
+        categories: this.xaxis
       },
       series: [
 
         {
           type: 'line',
           name: 'Österreich',
-          data: this.data.loadedStatistic.data
+          data: this.yone
         },
         {
           type: 'line',
           name: 'OÖ',
-          data: [2554, 1891, 1665, 1041, 917, 1230]
+          data: this.ytwo
         },
 
       ]
