@@ -5,6 +5,7 @@ import { Link } from 'src/app/models/link';
 import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
 import { ChartComponent } from '../../chart/chart.component';
+import { Statistic } from '../../models/statistic';
 @Component({
   selector: 'app-customize',
   templateUrl: './customize.component.html',
@@ -21,7 +22,9 @@ export class CustomizeComponent implements OnInit {
   x = ""
   y1 = ""
   y2 = ""
+  title = ""
 
+  addStatistic: Statistic = new Statistic();
   headers: string[][] = [[]];
 
   select = []
@@ -58,9 +61,11 @@ export class CustomizeComponent implements OnInit {
   }
 
   showData(){
+
     this.arrayx = []
     this.arrayy1 = []
     this.arrayy2 = []
+    this.title = ""
 
     for(let i = 1; i < this.statData.length-1; i++){
       if(+this.statData[i][this.x]){
@@ -84,17 +89,25 @@ export class CustomizeComponent implements OnInit {
       
     }
 
-    this.data.loadedStatistic.xaxis = this.arrayx
-    this.data.loadedStatistic.yuno = this.arrayy1
-    this.data.loadedStatistic.ydos = this.arrayy2
-    console.log( "customize component data " + this.data.loadedStatistic.yuno )
+
+    
+    this.addStatistic.chartType = "line"
+    this.addStatistic.xTitle = "Monate"
+    this.addStatistic.userId = 1
+    this.addStatistic.description = "Diagramm:" + this.y1 + " " + this.y2
+    this.addStatistic.errorRate = 0.7
+    this.addStatistic.title = "Statistic from User Nr " + 1 + ":  " + this.x + " " + this.y1 + " " + this.y2
+
+   
+
+    console.log( "Statistic Array Initialization proceed" )
     console.log(this.arrayx)
     console.log(this.arrayy1)
     console.log(this.arrayy2)
     
     this.linechart = new Chart({
       title: {
-        text: "Statistik"
+        text: this.title
       },
       credits: {
         enabled: false
@@ -123,4 +136,8 @@ export class CustomizeComponent implements OnInit {
     });
   }
 
+  saveData(){
+    console.log(" adding" + this.addStatistic)
+    this.data.insertStatistic(this.addStatistic);
+  }
 }
