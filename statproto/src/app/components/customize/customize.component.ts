@@ -94,11 +94,11 @@ export class CustomizeComponent implements OnInit {
     this.addStatistic.chartType = "line"
     this.addStatistic.xTitle = "Monate"
     this.addStatistic.userId = 1
-    this.addStatistic.description = "Diagramm:" + this.y1 + " " + this.y2
+    this.addStatistic.description = "Diagramm:" + this.statData[0][this.y1] + " " + this.statData[0][this.y2]
     this.addStatistic.errorRate = 0.7
-    this.addStatistic.title = "Statistic from User Nr " + 1 + ":  " + this.x + " " + this.y1 + " " + this.y2
+    this.addStatistic.title = this.statData[0][this.x]+ " rest deleted "
 
-   
+    console.log(this.statData[0][this.y2]);
 
     console.log( "Statistic Array Initialization proceed" )
     console.log(this.arrayx)

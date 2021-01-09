@@ -14,13 +14,15 @@ import {RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomizeComponent } from './components/customize/customize.component';
 import { FormsModule } from '@angular/forms';
+import { StatlistComponent } from './components/statlist/statlist.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'profil', component: ProfilComponent},
   {path: 'daten', component: DatenComponent},
   {path: 'customize', component: CustomizeComponent},
-  {path: 'chart', component: ChartComponent}
+  {path: 'chart', component: ChartComponent},
+  {path: 'list', component: StatlistComponent}
 ]
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ const routes: Routes = [
     DatenComponent,
     HomeComponent,
     ProfilComponent,
-    CustomizeComponent
+    CustomizeComponent,
+    StatlistComponent
   ],
   imports: [
     BrowserModule,

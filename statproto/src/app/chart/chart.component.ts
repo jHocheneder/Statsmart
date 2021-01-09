@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import * as Highcharts from 'highcharts';
 import { DataService } from '../services/data.service';
+import { Statistic } from '../models/statistic';
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',

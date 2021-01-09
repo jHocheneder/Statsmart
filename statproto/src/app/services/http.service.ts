@@ -15,8 +15,14 @@ export class HttpService {
 
   public insertResource(resource : Statistic){
     console.log("made it here")
-    return this.http.post<Statistic[]>('http://localhost:8080/api/saveStatistic', resource);
+    return this.http.post<Statistic[]>(baseUrl + 'api/saveStatistic', resource);
   }
+
+  public getAllStatistics(){
+    console.log("made it here")
+    return this.http.get<Statistic[]>(baseUrl + 'api/findAllStatistic');
+  }
+
 
   public getList(){
     return this.http.get<Link[]>(baseUrl + "api/getLinks");

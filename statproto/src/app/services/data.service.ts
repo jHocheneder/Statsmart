@@ -23,5 +23,11 @@ export class DataService {
     let addStat= Object.assign({}, newStatistic);
     this.http.insertResource(addStat).subscribe( () => {this.statistics.push(addStat)});
   }
+  findStatistics(){
+    this.http.getAllStatistics().subscribe(data => {
+      this.statistics = data
+      console.log(this.statistics)
+    })
+  }
 }
 

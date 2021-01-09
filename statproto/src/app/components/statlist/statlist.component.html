@@ -1,0 +1,15 @@
+<clr-datagrid>
+    <clr-dg-column>StatsId</clr-dg-column>
+    <clr-dg-column>Titel</clr-dg-column>
+    <clr-dg-column>Description</clr-dg-column>
+    <clr-dg-column>errorRate</clr-dg-column>
+
+    <clr-dg-row *ngFor="let statistic of data.statistics">
+        <clr-dg-cell>{{statistic.id}}</clr-dg-cell>
+        <clr-dg-cell>{{statistic.title}}</clr-dg-cell>
+        <clr-dg-cell>{{statistic.description}}</clr-dg-cell>
+        <clr-dg-cell>{{statistic.errorRate}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <!--<clr-dg-footer>{{users.length}} users</clr-dg-footer>-->
+</clr-datagrid>
