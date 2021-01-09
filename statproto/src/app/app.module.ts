@@ -14,6 +14,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomizeComponent } from './components/customize/customize.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -29,7 +31,9 @@ const routes: Routes = [
     DatenComponent,
     HomeComponent,
     ProfilComponent,
-    CustomizeComponent
+    CustomizeComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
