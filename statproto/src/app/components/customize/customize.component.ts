@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Chart } from 'angular-highcharts';
 import { Link } from 'src/app/models/link';
 import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
-
+import { ChartComponent } from '../../chart/chart.component';
+import { Statistic } from '../../models/statistic';
 @Component({
   selector: 'app-customize',
   templateUrl: './customize.component.html',
@@ -11,19 +13,26 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class CustomizeComponent implements OnInit {
 
-  selected: Link[];
+  linechart : Chart
 
+  selected: Link[];
+  arrayx = []
+  arrayy1: number[] = []
+  arrayy2: number[] = []
   x = ""
   y1 = ""
   y2 = ""
+  title = ""
 
+  addStatistic: Statistic = new Statistic();
   headers: string[][] = [[]];
 
   select = []
 
   statData
 
-  constructor(private route: ActivatedRoute,
+  constructor(private chart: ChartComponent,
+    private route: ActivatedRoute,
     private data: DataService,
     private http: HttpService) { }
 
@@ -52,17 +61,83 @@ export class CustomizeComponent implements OnInit {
   }
 
   showData(){
-    let arrayx = []
-    let arrayy1 = []
-    let arrayy2 = []
+
+    this.arrayx = []
+    this.arrayy1 = []
+    this.arrayy2 = []
+    this.title = ""
+
     for(let i = 1; i < this.statData.length-1; i++){
-      arrayx.push(this.statData[i][this.x])
-      arrayy1.push(this.statData[i][this.y1])
-      arrayy2.push(this.statData[i][this.y2])
+      if(+this.statData[i][this.x]){
+        this.arrayx.push(+this.statData[i][this.x])
+      } else{
+        this.arrayx.push(this.statData[i][this.x])
+      }
+
+      if(+this.statData[i][this.y1]){
+        this.arrayy1.push(+this.statData[i][this.y1])
+      } else {
+        this.arrayy1.push(this.statData[i][this.y1])
+      }
+      
+      if(+this.statData[i][this.y2]){
+        this.arrayy2.push(+this.statData[i][this.y2])
+      } else {
+        this.arrayy2.push(this.statData[i][this.y2])
+      }
+      
+      
     }
-    console.log(arrayx)
-    console.log(arrayy1)
-    console.log(arrayy2)
+
+
+    
+    this.addStatistic.chartType = "line"
+    this.addStatistic.xTitle = "Monate"
+    this.addStatistic.userId = 1
+    this.addStatistic.description = "Diagramm:" + this.statData[0][this.y1] + " " + this.statData[0][this.y2]
+    this.addStatistic.errorRate = 0.7
+    this.addStatistic.title = this.statData[0][this.x]+ " rest deleted "
+
+    console.log(this.statData[0][this.y2]);
+
+    console.log( "Statistic Array Initialization proceed" )
+    console.log(this.arrayx)
+    console.log(this.arrayy1)
+    console.log(this.arrayy2)
+    
+    this.linechart = new Chart({
+      title: {
+        text: this.title
+      },
+      credits: {
+        enabled: false
+      },
+      xAxis: {
+        
+        labels: {
+         
+        },
+        categories: this.arrayx
+      },
+      series: [
+
+        {
+          type: 'line',
+          name: this.statData[0][this.y1],
+          data: this.arrayy1
+        },
+        {
+          type: 'line',
+          name: this.statData[0][this.y2],
+          data: this.arrayy2
+        },
+
+      ]
+    });
   }
 
+  saveData(){
+    console.log(" adding" + this.addStatistic)
+    this.data.insertStatistic(this.addStatistic);
+  }
 }

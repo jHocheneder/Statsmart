@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Link } from '../models/link';
+import { Statistic } from '../models/statistic';
 import { Observable } from 'rxjs';
 
 const baseUrl = 'http://localhost:8080/'
@@ -11,6 +12,17 @@ const baseUrl = 'http://localhost:8080/'
 export class HttpService {
 
   constructor(private http: HttpClient) { }
+
+  public insertResource(resource : Statistic){
+    console.log("made it here")
+    return this.http.post<Statistic[]>(baseUrl + 'api/saveStatistic', resource);
+  }
+
+  public getAllStatistics(){
+    console.log("made it here")
+    return this.http.get<Statistic[]>(baseUrl + 'api/findAllStatistic');
+  }
+
 
   public getList(){
     return this.http.get<Link[]>(baseUrl + "api/getLinks");

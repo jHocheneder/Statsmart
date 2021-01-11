@@ -14,15 +14,18 @@ import {RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomizeComponent } from './components/customize/customize.component';
 import { FormsModule } from '@angular/forms';
+
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { StatlistComponent } from './components/statlist/statlist.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'profil', component: ProfilComponent},
   {path: 'daten', component: DatenComponent},
   {path: 'customize', component: CustomizeComponent},
-  {path: 'chart', component: ChartComponent}
+  {path: 'chart', component: ChartComponent},
+  {path: 'list', component: StatlistComponent}
 ]
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ const routes: Routes = [
     ProfilComponent,
     CustomizeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    StatlistComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    ChartComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

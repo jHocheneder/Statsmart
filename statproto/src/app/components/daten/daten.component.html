@@ -17,13 +17,13 @@
             <ng-container ngProjectAs="clr-dg-row-detail" *ngIf="selected.includes(link)">
                 <clr-dg-row-detail *clrIfExpanded>
                     <div class="detail">
-                        <div *ngFor="let l of link.detail" > 
+                        <div *ngFor="let l of link.detail" >
                             <div *ngIf="l.type === 'CSV'">
                                 {{l.title}} Type: {{l.type}}
                             </div>
                         </div>
                     </div>
-                    
+
                 </clr-dg-row-detail>
               </ng-container>
         </clr-dg-row-detail>
@@ -36,3 +36,4 @@
         </clr-dg-pagination>
     </clr-dg-footer>
 </clr-datagrid>
+
