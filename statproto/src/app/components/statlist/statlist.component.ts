@@ -12,6 +12,10 @@ export class StatlistComponent implements OnInit {
 
   ngOnInit(): void {
     this.data.findStatistics()
+    
+
+    console.log(this.data.statistics)
   }
+
 
 }
