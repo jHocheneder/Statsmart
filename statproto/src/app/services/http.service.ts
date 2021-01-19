@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Link } from '../models/link';
 import { Statistic } from '../models/statistic';
 import { Observable } from 'rxjs';
+import { Rating } from '../models/rating';
 
 const baseUrl = 'http://localhost:8080/'
 
@@ -15,7 +16,12 @@ export class HttpService {
 
   public insertResource(resource : Statistic){
     console.log("made it here")
-    return this.http.post<Statistic[]>(baseUrl + 'api/saveStatistic', resource);
+    return this.http.post<any>(baseUrl + 'statistic/saveStatistic', resource);
+  }
+
+  public insertRating(resource : Rating){
+    console.log("inserted rating")
+    return this.http.put<Rating[]>(baseUrl + 'statistic/updateRating', resource);
   }
 
   public getAllStatistics(){

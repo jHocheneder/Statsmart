@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
+import { Rating } from 'src/app/models/rating';
 import { DataService } from 'src/app/services/data.service';
 @Component({
   selector: 'app-statlist',
@@ -9,6 +10,8 @@ import { DataService } from 'src/app/services/data.service';
 export class StatlistComponent implements OnInit {
 
   constructor(public data : DataService) { }
+  addRating: Rating = new Rating();
+
 
   ngOnInit(): void {
     this.data.findStatistics()
@@ -16,6 +19,14 @@ export class StatlistComponent implements OnInit {
 
     console.log(this.data.statistics)
   }
+
+  cacheId(saveid : number, vote : number){
+    this.data.insertRating(saveid,vote);
+    console.log(saveid, vote)
+  }
+
+
+  
 
 
 }

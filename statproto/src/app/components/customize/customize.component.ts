@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'angular-highcharts';
+import * as Highcharts from 'highcharts';
+import { bindCallback } from 'rxjs';
 import { Link } from 'src/app/models/link';
 import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -23,12 +25,13 @@ export class CustomizeComponent implements OnInit {
   y1 = ""
   y2 = ""
   title = ""
+  currentTitle = ""
 
   addStatistic: Statistic = new Statistic();
   headers: string[][] = [[]];
 
   select = []
-
+  
   statData
 
   constructor(private chart: ChartComponent,
@@ -96,7 +99,10 @@ export class CustomizeComponent implements OnInit {
     this.addStatistic.userId = 1
     this.addStatistic.description = "Diagramm:" + this.statData[0][this.y1] + " " + this.statData[0][this.y2]
     this.addStatistic.errorRate = 0.7
-    this.addStatistic.title = this.statData[0][this.x]+ " rest deleted "
+    //this.addStatistic.title = this.statData[0][this.x]+ " rest deleted "
+    this.addStatistic.title = "standardtitel"
+    console.log(this.currentTitle)
+    //this.addStatistic.Rating = 0
 
     console.log(this.statData[0][this.y2]);
 
@@ -119,25 +125,65 @@ export class CustomizeComponent implements OnInit {
         },
         categories: this.arrayx
       },
-      series: [
-
-        {
-          type: 'line',
-          name: this.statData[0][this.y1],
-          data: this.arrayy1
+     
+      yAxis: [{ // Primary yAxis
+        id: "y_axis_0",
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
         },
-        {
-          type: 'line',
-          name: this.statData[0][this.y2],
-          data: this.arrayy2
+        title: {
+            text: this.statData[0][this.y1],
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
         },
+        opposite: true
 
-      ]
+    }, { // Secondary yAxis
+        gridLineWidth: 0,
+        id: "y_axis_1",
+        title: {
+            text: this.statData[0][this.y2],
+            style: {
+                color: "#000000"
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                color: "#000000"
+            }
+        }
+
+    }],
+    series: [
+
+      {
+        type: 'line',
+        name: this.statData[0][this.y1],
+        data: this.arrayy1,
+        yAxis: "y_axis_0"
+      },
+      {
+        type: 'line',
+        name: this.statData[0][this.y2],
+        data: this.arrayy2,
+        yAxis: "y_axis_1"
+      },
+
+    ]
+      
     });
   }
 
   saveData(){
     console.log(" adding" + this.addStatistic)
+    console.log(this.currentTitle)
+    this.addStatistic.title = this.currentTitle
     this.data.insertStatistic(this.addStatistic);
+    
   }
 }
