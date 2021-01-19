@@ -1,0 +1,55 @@
+#myVideo {
+    object-fit: cover;
+    width: 100%;
+    height: 94vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#hometext{
+    position: absolute;
+    float: left;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 38vw;
+    right: 38vw;
+    top: 0px;
+    z-index: 1;
+}
+#statsmartbig {
+    color: white;
+    font-size: 400%;
+    font-weight: 200;
+}
+
+#logoHome{
+    margin-right: 20px;
+}
+
+#homeTop {
+    position: relative;
+}
+
+#homeMid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pHome {
+    width: 30vw;
+    text-align: center;
+    font-size: 150%;
+    margin: 20px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #212121;
+    padding: 30px;
+}
