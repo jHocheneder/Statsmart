@@ -1,30 +1,35 @@
 <div class="login-wrapper">
-    <form class="login">
+    <form class="login" [formGroup]="registerForm">
         <section class="title">
-            <h3 class="welcome">Wilkommen bei</h3>
+            <h3 class="welcome">Willkommen bei</h3>
             Statsmart
             <h5 class="hint">Bitte geben Sie Ihre Daten ein, um sich zu registrieren</h5>
         </section>
         <div class="login-group">
             <clr-input-container>
                 <label class="clr-sr-only">Username</label>
-                <input type="text" name="username" clrInput placeholder="Username" [(ngModel)]="username" />
+                <input type="text" name="username" clrInput placeholder="Username" formControlName="username" />
+                <clr-control-error>Username muss zwischen 3 und 20 Zeichen sein.</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label class="clr-sr-only">Email</label>
-                <input type="text" name="email" clrInput placeholder="Email" [(ngModel)]="email" />
+                <input type="text" name="email" clrInput placeholder="Email" formControlName="email" />
+                <clr-control-error>Email ist inkorrekt.</clr-control-error>
             </clr-input-container>
             <clr-input-container>
                 <label class="clr-sr-only">Email wiederholen</label>
-                <input type="text" name="email-repeat" clrInput placeholder="Email wiederholen" [(ngModel)]="emailrepeat" />
+                <input type="text" name="email-repeat" clrInput placeholder="Email wiederholen" formControlName="emailrepeat" />
+                <clr-control-error>Emails stimmen nicht überein.</clr-control-error>
             </clr-input-container>
             <clr-password-container>
                 <label class="clr-sr-only">Password</label>
-                <input type="password" name="password" clrPassword placeholder="Passwort" [(ngModel)]="password" />
+                <input type="password" name="password" clrPassword placeholder="Passwort" formControlName="password" />
+                <clr-control-error>Passwort muss mindesten 8 Zeichen haben.</clr-control-error>
             </clr-password-container>
             <clr-password-container>
                 <label class="clr-sr-only">Password wiederholen</label>
-                <input type="password" name="password-repeat" clrPassword placeholder="Passwort wiederholen" [(ngModel)]="passwordrepeat" />
+                <input type="password" name="passwordrepeat" clrPassword placeholder="Passwort wiederholen" formControlName="passwordrepeat" />
+                <clr-control-error>Passwörter stimmen nicht überein.</clr-control-error>
             </clr-password-container>
             <clr-checkbox-wrapper>
                 <label>Remember me</label>
@@ -33,7 +38,7 @@
             <!--<div class="error active">
                 Invalid user name or password
             </div>-->
-            <button type="submit" class="btn btn-primary">REGISTRIEREN</button>
+            <button type="submit" class="btn btn-primary" (click)="register()">REGISTRIEREN</button>
             <a [routerLink]="['/login']" class="signup">Hast du schon einen Account? Login </a>
         </div>
     </form>

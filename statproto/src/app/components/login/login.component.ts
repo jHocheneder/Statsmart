@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { sha512 } from 'js-sha512';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +13,26 @@ export class LoginComponent implements OnInit {
   email: string
   password: string
 
-  constructor() { }
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   login(){
     console.log(this.email + " " + this.password)
+
+    const body = { email: this.email, password: sha512(this.password) }
+
+    this.auth.login(body).subscribe( result => {
+      console.log(result)
+      if ( result != 'false' ) {
+        localStorage.setItem('token', result)
+        this.router.navigate(['home'])
+      } 
+    })
   }
 
 }
