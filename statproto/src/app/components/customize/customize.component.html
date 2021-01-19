@@ -1,4 +1,5 @@
 <div id="customizebody">
+    <input clrInput placeholder="Titel" name="titel" [(ngModel)]="currentTitle" class="align-content"/>
     <div class="clr-col-lg-12 clr-col-12 axes">
         <div class="card">
             <div class="card-block">
@@ -34,6 +35,7 @@
             </div>
         </div>
     </div>
+    
     <button class="btn btn-link" (click)="showData()">Anzeigen</button>
     <div [chart]="linechart" ></div>
     <button class="btn btn-success" (click)="saveData()">Speichern</button>
