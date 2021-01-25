@@ -13,8 +13,11 @@
       <a href="" class="nav-link nav-text" [routerLink]="['/profil']">Profil</a>
     </div>
     <div class="header-actions">
-      <a href="javascript://" class="nav-link nav-icon" aria-label="settings" [routerLink]="['/login']">
+      <a *ngIf="!isLogin()" href="javascript://" class="nav-link nav-icon" aria-label="settings" [routerLink]="['/login']">
         <clr-icon shape="user"></clr-icon>
+      </a>
+      <a *ngIf="isLogin()" href="javascript://" class="nav-link nav-icon" aria-label="settings" [routerLink]="['/login']" (click)="logout()">
+        <clr-icon shape="logout"></clr-icon>
       </a>
     </div>
   </header>
