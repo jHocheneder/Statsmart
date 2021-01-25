@@ -102,7 +102,7 @@ export class CustomizeComponent implements OnInit {
     
     this.addStatistic.chartType = "line"
     this.addStatistic.xTitle = "Monate"
-    this.addStatistic.userId = 1
+    
     this.addStatistic.description = "Diagramm:" + this.statData[0][this.y1] + " " + this.statData[0][this.y2]
     this.addStatistic.errorRate = 0.7
     //this.addStatistic.title = this.statData[0][this.x]+ " rest deleted "

@@ -7,4 +7,5 @@ export class Statistic {
     description: string;
     userId: number;
     Rating: number;
+    username: string;
 }

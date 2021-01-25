@@ -2,7 +2,7 @@
     <clr-dg-column>Upvote</clr-dg-column>
     <clr-dg-column>Downvote</clr-dg-column>
     <clr-dg-column>Rating</clr-dg-column>
-    <clr-dg-column>StatsId</clr-dg-column>
+    <clr-dg-column>UserId</clr-dg-column>
     <clr-dg-column>Titel</clr-dg-column>
     <clr-dg-column>Description</clr-dg-column>
     <clr-dg-column>errorRate</clr-dg-column>
@@ -13,7 +13,7 @@
     <clr-dg-cell><button class="btn btn-success" (click)="cacheId(statistic.id,1)">Upvote</button></clr-dg-cell>
     <clr-dg-cell><button class="btn btn-danger" (click)="cacheId(statistic.id,-1)">Downvote</button></clr-dg-cell>
         <clr-dg-cell>{{statistic.Rating}}</clr-dg-cell>
-        <clr-dg-cell>{{statistic.userId}}</clr-dg-cell>
+        <clr-dg-cell>{{statistic.username}}</clr-dg-cell>
         <clr-dg-cell>{{statistic.title}}</clr-dg-cell>
         <clr-dg-cell>{{statistic.description}}</clr-dg-cell>
         <clr-dg-cell>{{statistic.errorRate}}</clr-dg-cell>

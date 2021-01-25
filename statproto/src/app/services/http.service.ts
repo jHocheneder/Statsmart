@@ -15,13 +15,19 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   public insertResource(resource : Statistic){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+ 
+
     console.log("made it here")
-    return this.http.post<any>(baseUrl + 'statistic/saveStatistic', resource);
+    return this.http.post<any>(baseUrl + 'statistic/saveStatistic', resource,  {headers});
   }
 
   public insertRating(resource : Rating){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    
     console.log("inserted rating")
-    return this.http.put<Rating[]>(baseUrl + 'statistic/updateRating', resource);
+    return this.http.put<Rating[]>(baseUrl + 'statistic/updateRating', resource,  {headers});
   }
 
   public getAllStatistics(){
