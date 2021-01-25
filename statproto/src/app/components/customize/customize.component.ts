@@ -8,6 +8,7 @@ import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
 import { ChartComponent } from '../../chart/chart.component';
 import { Statistic } from '../../models/statistic';
+import { AuthGuard } from 'src/app/guards/auth.guard'
 @Component({
   selector: 'app-customize',
   templateUrl: './customize.component.html',
@@ -37,7 +38,8 @@ export class CustomizeComponent implements OnInit {
   constructor(private chart: ChartComponent,
     private route: ActivatedRoute,
     private data: DataService,
-    private http: HttpService) { }
+    private http: HttpService,
+    private authGuard: AuthGuard) { }
 
   ngOnInit(): void {
     this.selected = this.data.selected;
@@ -61,6 +63,10 @@ export class CustomizeComponent implements OnInit {
         })
       })
     }
+  }
+
+  isLogin(){
+    return this.authGuard.isAuthenticated()
   }
 
   showData(){
