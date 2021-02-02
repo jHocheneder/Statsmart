@@ -1,13 +1,13 @@
 <clr-datagrid>
     <clr-dg-column>Upvote</clr-dg-column>
     <clr-dg-column>Downvote</clr-dg-column>
-    <clr-dg-column>Rating</clr-dg-column>
+    <clr-dg-column [clrDgField]="'Rating'" [clrDgColType]="'number'">Rating</clr-dg-column>
     <clr-dg-column>UserId</clr-dg-column>
     <clr-dg-column>Titel</clr-dg-column>
     <clr-dg-column>Description</clr-dg-column>
     <clr-dg-column>errorRate</clr-dg-column>
 
-    <clr-dg-row *ngFor="let statistic of data.statistics; let id = index">
+    <clr-dg-row *clrDgItems="let statistic of data.statistics; let id = index">
         
     
     <clr-dg-cell><button (click)="cacheId(statistic.id,1)"><clr-icon shape="thumbs-up" class="is-solid" ></clr-icon></button></clr-dg-cell>

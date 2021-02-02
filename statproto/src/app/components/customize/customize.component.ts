@@ -28,6 +28,12 @@ export class CustomizeComponent implements OnInit {
   title = ""
   currentTitle = ""
 
+  currentXTitle = ""
+  currentYTitle1 = ""
+  currentYTitle2 = ""
+
+  url = "";
+
   addStatistic: Statistic = new Statistic();
   headers: string[][] = [[]];
 
@@ -50,6 +56,7 @@ export class CustomizeComponent implements OnInit {
   getDownloadLink() {
     for(let i = 0; i<this.selected.length; i++){
       this.http.getDownloadLink(this.selected[i].detail[0].link).subscribe(data=>{
+        this.url = data;
         this.http.downloadCSV(data).subscribe(csv=>{
           for(let i = 0; i<csv[0].length; i++){
             this.statData = csv
@@ -101,12 +108,20 @@ export class CustomizeComponent implements OnInit {
 
     
     this.addStatistic.chartType = "line"
-    this.addStatistic.xTitle = "Monate"
+    this.addStatistic.xTitle = this.currentXTitle
     
     this.addStatistic.description = "Diagramm:" + this.statData[0][this.y1] + " " + this.statData[0][this.y2]
     this.addStatistic.errorRate = 0.7
     //this.addStatistic.title = this.statData[0][this.x]+ " rest deleted "
     this.addStatistic.title = "standardtitel"
+    this.addStatistic.link1 = this.url
+    this.addStatistic.link2 = this.url
+    this.addStatistic.yTitle1 = this.currentYTitle1
+    this.addStatistic.yValue1 = this.statData[0][this.y1]
+    this.addStatistic.yTitle2 = this.currentYTitle2
+    this.addStatistic.yValue2 = this.statData[0][this.y2]
+    this.addStatistic.xValue = this.statData[0][this.x];
+   
     console.log(this.currentTitle)
     //this.addStatistic.Rating = 0
 
@@ -190,6 +205,6 @@ export class CustomizeComponent implements OnInit {
     console.log(this.currentTitle)
     this.addStatistic.title = this.currentTitle
     this.data.insertStatistic(this.addStatistic);
-    
+    console.log(this.addStatistic)
   }
 }

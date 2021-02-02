@@ -35,6 +35,11 @@ export class HttpService {
     return this.http.get<Statistic[]>(baseUrl + 'api/findAllStatistic');
   }
 
+   public getSavedStatistics(p_statsid){
+    console.log("made it here")
+    return this.http.get<[]>(baseUrl + 'api/getLinksForStatistics/' + p_statsid);
+  }
+
 
   public getList(){
     return this.http.get<Link[]>(baseUrl + "api/getLinks");

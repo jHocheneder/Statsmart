@@ -4,6 +4,7 @@
         <div class="card">
             <div class="card-block">
                 <h3 class="card-title">Wähle eine Spalte für die x-Achse aus</h3>
+                <input clrInput placeholder="" name="xtitel" [(ngModel)]="currentXTitle" class="align-content" *ngIf="isLogin()"/>
                     <select clrSelect name="options" [(ngModel)]="x" >
                         <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
                     </select>
@@ -15,6 +16,7 @@
         <div class="card">
             <div class="card-block">
                 <h3 class="card-title">Wähle eine Spalte für die erste y-Achse aus</h3>
+                <input clrInput placeholder="" name="ytitel1" [(ngModel)]="currentYTitle1" class="align-content" *ngIf="isLogin()"/>
                     <select clrSelect name="options" [(ngModel)]="y1">
                         <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
                     </select>
@@ -26,6 +28,7 @@
         <div class="card">
             <div class="card-block">
                 <h3 class="card-title">Wähle eine Spalte für die zweite y-Achse aus</h3>
+                <input clrInput placeholder="" name="ytitel2" [(ngModel)]="currentYTitle2" class="align-content" *ngIf="isLogin()"/>
                     <select clrSelect name="options" [(ngModel)]="y2">
                         <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
                     </select>
