@@ -4,6 +4,7 @@ import { Link } from '../models/link';
 import { Statistic } from '../models/statistic';
 import { Observable } from 'rxjs';
 import { Rating } from '../models/rating';
+import { SavedLink } from '../models/savedLink';
 
 const baseUrl = 'http://localhost:8080/'
 
@@ -35,9 +36,9 @@ export class HttpService {
     return this.http.get<Statistic[]>(baseUrl + 'api/findAllStatistic');
   }
 
-   public getSavedStatistics(p_statsid){
-    console.log("made it here")
-    return this.http.get<[]>(baseUrl + 'api/getLinksForStatistics/' + p_statsid);
+   public getValueLinks(p_statsid){
+    console.log("made it to the savedLinks")
+    return this.http.get<any>(baseUrl + 'api/getLinksForStatistics/' + p_statsid);
   }
 
 

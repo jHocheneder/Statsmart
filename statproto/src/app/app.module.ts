@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StatlistComponent } from './components/statlist/statlist.component';
+import { ArticleComponent } from './components/article/article.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'daten', component: DatenComponent},
   {path: 'customize', component: CustomizeComponent},
   {path: 'chart', component: ChartComponent},
-  {path: 'list', component: StatlistComponent}
+  {path: 'list', component: StatlistComponent},
+  {path: 'article', component: ArticleComponent}
 ]
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ const routes: Routes = [
     CustomizeComponent,
     LoginComponent,
     RegisterComponent,
-    StatlistComponent
+    StatlistComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,

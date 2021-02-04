@@ -25,6 +25,10 @@ export class StatlistComponent implements OnInit {
     console.log(saveid, vote)
   }
 
+  saveForArticle(rowstat){
+    this.data.savedStatistic  = rowstat;
+  }
+
 
   
 

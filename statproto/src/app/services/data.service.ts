@@ -3,6 +3,7 @@ import { Link } from '../models/link';
 import { Statistic } from '../models/statistic';
 import { Rating } from '../models/rating';
 import { HttpService } from './http.service';
+import { SavedLink } from '../models/savedLink';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,16 @@ export class DataService {
   selected: Link[] = []
   statistics: Array<Statistic>;
   ratings: Array<Rating>;
+  sLink: SavedLink;
+  
+
+
 
   /*xaxis = []
   y1axis = []
   y2axis = []*/
 
+  savedStatistic: Statistic = new Statistic();
   loadedStatistic: Statistic = new Statistic();
   loadedRating: Rating = new Rating();
 
@@ -46,6 +52,12 @@ export class DataService {
     this.http.getAllStatistics().subscribe(data => {
       this.statistics = data
       console.log(this.statistics)
+    })
+  }
+  getValueLinks(paraid){
+    this.http.getValueLinks(paraid).subscribe(data => {
+      this.sLink = data[0]
+      console.log(this.sLink)
     })
   }
 }
