@@ -1,0 +1,27 @@
+#userData {
+    text-align: center;
+    padding: 20px;
+}
+
+#userCard {
+    margin-left: 5vw;
+    width: 60vw;
+}
+
+.dataLine {
+    display: flex;
+    flex-direction: row;
+}
+
+.userDatainput {
+    text-align: right;
+}
+
+.attribute {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.updatebtn {
+    margin-top: 2vh;
+}

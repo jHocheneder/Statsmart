@@ -22,8 +22,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    console.log(this.email + " " + this.password)
-
     const body = { email: this.email, password: sha512(this.password) }
 
     this.auth.login(body).subscribe( result => {
