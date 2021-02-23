@@ -38,10 +38,13 @@
                 <clr-dg-row-detail *clrIfExpanded>
                     <div class="detail">
                         <clr-checkbox-container>
+
                             <clr-checkbox-wrapper *ngFor="let l of link.detail">
                               <input type="checkbox" clrCheckbox name="options" [value]="l.link" />
                               <label>{{l.title}} Type: {{l.type}}</label>
                             </clr-checkbox-wrapper>
+
+
                             <clr-control-helper>Helper text</clr-control-helper>
                             <clr-control-error>This field is required!</clr-control-error>
                           </clr-checkbox-container>
