@@ -63,4 +63,16 @@ export class HttpService {
     }
     return this.http.post<string[][]>(baseUrl+'api/downloadcsv', body);
   }
+
+  public getUserData(){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+    return this.http.get<{username: string, email: string}>(baseUrl + "statistic/getUserData", {headers});
+  }
+
+  public updateUserData(updBody){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+    return this.http.post(baseUrl + "statistic/updateUserData", updBody, {headers})
+  }
 }

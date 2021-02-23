@@ -4,6 +4,7 @@ import { DataService } from '../../services/data.service'
 import { Link } from '../../models/link'
 import { ClrDatagridStateInterface } from '@clr/angular';
 import { Router} from '@angular/router';
+import { formatNumber } from '@angular/common';
 
 @Component({
   selector: 'app-daten',
@@ -15,22 +16,42 @@ export class DatenComponent implements OnInit {
   users: any;
   selected = [];
 
+  searchString: string = "";
+
   constructor(private http: HttpService, 
     private router: Router,
     private data: DataService) { }
 
   daten: Link[] = []
+  filteredDaten: Link[] = []
 
-
+  topics: string[][] = [
+    ["Abfall", "Müll", "Abwasser"],
+    ["Tourismus", "Touristen", "Hotels", "Urlaub", "Beherbergungsbetriebe"],
+    ["Wohnen", "Wohn", "Adresse"],
+    ["Finanzen", "Finanz", "Geld", "Bank", "Rechnung"],
+    ["Bildung", "Intelligenz", "Lernen", "Schule", "Schüler", "Studie", "Student"],
+    ["Verkehr", "Auto", "KFZ", "Fahrzeug", "Bahn", "Zug", "Flug"],
+    ["Einwohner", "Menschen", "Bürger"],
+    ["Handel", "Geschäft", "Kauf", "Käufer"],
+    ["Engerwitzdorf"],
+    ["Wirtschaft", "Unternehmen"]
+  ]
   
   ngOnInit(): void {
     this.getList()
+
+    /*if(parseFloat("2517,05")){
+      console.log(parseFloat("2517,05"))
+    }*/
+
   }
 
   getList(){
     this.http.getList().subscribe(data => {
       this.daten = []
       this.daten = data
+      this.filteredDaten = data
     })
   }
 
@@ -40,6 +61,27 @@ export class DatenComponent implements OnInit {
       this.daten.push(this.daten[i])
     }
     return this.daten
+  }
+
+  getSearchedData(){
+    if(this.searchString == ""){
+      return this.filteredDaten
+    }
+    else{
+      return this.filteredDaten.filter(s => s.title.toLowerCase().includes(this.searchString.toLowerCase()))
+    }
+  }
+  
+  
+  getTopicData(topicId){
+      this.filteredDaten = this.daten
+      let topicDaten: Link[] = []
+      for(let i = 0; i<this.topics[topicId].length; i++){
+        console.log(topicDaten)
+        //topicDaten = mergeById(this.filteredDaten.filter(s => s.title.toLowerCase().includes(this.topics[topicId][i].toLowerCase())), topicDaten)
+        topicDaten = topicDaten.concat(this.filteredDaten.filter(s => s.title.toLowerCase().includes(this.topics[topicId][i].toLowerCase())))
+      }
+      this.filteredDaten = topicDaten.sort()
   }
 
   getDownloadLink(link: Link) {

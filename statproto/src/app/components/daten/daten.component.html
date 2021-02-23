@@ -1,15 +1,35 @@
+
+<div class="clr-row">
+    <div class="clr-col-lg-5 clr-col-md-8 clr-col-12" class="innercard">
+        <div class="card">
+            <div class="card-header">
+            Themen
+            </div>
+            <div class="card-block">
+                <div class="card-text">
+                    <a *ngFor="let t of topics; let i = index" (click)="getTopicData(i)"> {{ t[0] }} <br></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <clr-datagrid id="datagrid" [(clrDgSelected)]="selected" [clrDgRowSelection]="true">
 
     <clr-dg-action-bar>
         <div class="btn-group">
             <button type="button" class="btn btn-sm btn-secondary" [disabled]="selected?.length == 0" (click)="analyze()"><clr-icon shape="pencil"></clr-icon>Analysieren</button>
+            <!--<clr-icon shape="search"></clr-icon>-->
+            <clr-input-container id="searchContainer">
+                <label class="clr-sr-only">Suchen</label>
+                <input type="text" name="search" id="searchInput" clrInput placeholder="Suchen" [(ngModel)]="searchString" />
+            </clr-input-container>
         </div>
     </clr-dg-action-bar>
 
     <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
     <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
 
-    <clr-dg-row *clrDgItems="let link of daten" [clrDgItem]="link" [clrDgSelectable]="locked(link)" (click)="getDownloadLink(link)">
+    <clr-dg-row *clrDgItems="let link of getSearchedData()" [clrDgItem]="link" [clrDgSelectable]="locked(link)" (click)="getDownloadLink(link)">
         <clr-dg-cell>{{link.id+1}}</clr-dg-cell>
         <clr-dg-cell>{{link.title}}</clr-dg-cell>
 
@@ -25,7 +45,7 @@
                     </div>
 
                 </clr-dg-row-detail>
-              </ng-container>
+                </ng-container>
         </clr-dg-row-detail>
     </clr-dg-row>
 
@@ -36,4 +56,3 @@
         </clr-dg-pagination>
     </clr-dg-footer>
 </clr-datagrid>
-

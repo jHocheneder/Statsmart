@@ -76,6 +76,37 @@ export class CustomizeComponent implements OnInit {
     return this.authGuard.isAuthenticated()
   }
 
+  autoParse(n: string){
+    if(n.includes(",")){
+      n = n.split(".").join("")
+      n = n.replace(",",".")
+      console.log(n)
+    } else {
+      if(n.includes(".")){
+        let a = n.split(".")
+        if(a.length > 2){
+          n = a.join("");
+        } else {
+          let isComma = false;
+          for(let i = 0; i < a.length; i++){
+            if(a[i].length != 3){
+              isComma = true
+            }
+          }
+          if(!isComma){
+            n = a.join("")
+          }
+        }
+      }
+    }
+    if(+n){
+      return +n
+    }
+    else {
+      return n
+    }
+  }
+
   showData(){
 
     this.arrayx = []
@@ -84,20 +115,23 @@ export class CustomizeComponent implements OnInit {
     this.title = ""
 
     for(let i = 1; i < this.statData.length-1; i++){
-      if(+this.statData[i][this.x]){
-        this.arrayx.push(+this.statData[i][this.x])
+      if(this.autoParse(this.statData[i][this.x])){
+        this.arrayx.push(this.autoParse(this.statData[i][this.x]))
       } else{
         this.arrayx.push(this.statData[i][this.x])
       }
-
-      if(+this.statData[i][this.y1]){
-        this.arrayy1.push(+this.statData[i][this.y1])
+      let y1=this.autoParse(this.statData[i][this.y1])
+      if(y1){
+        console.log("Ausgangswert:")
+        console.log("y1: "+y1)
+        this.arrayy1.push(+y1)
       } else {
         this.arrayy1.push(this.statData[i][this.y1])
       }
-      
-      if(+this.statData[i][this.y2]){
-        this.arrayy2.push(+this.statData[i][this.y2])
+      let y2 = this.autoParse(this.statData[i][this.y2])
+      if(y2){
+        console.log("y2: "+y2)
+        this.arrayy2.push(+y2)
       } else {
         this.arrayy2.push(this.statData[i][this.y2])
       }

@@ -1,1 +1,48 @@
-<p>profil works!</p>
+<div class="clr-row" id="userCard">
+    <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+      <div class="card">
+        <div class="card-header">
+          Account
+        </div>
+        <div class="card-block" id="userData">
+          <div class="card-text">
+            <form class="login" [formGroup]="updateForm">
+              <div class="dataLine">
+                <p class="attribute">Username:</p> 
+                <clr-input-container class="userDatainput">
+                  <label class="clr-sr-only">Username</label>
+                  <input type="text" name="username" clrInput placeholder="Username" [value]="username" formControlName="username" />
+                  <clr-control-error>Username muss zwischen 3 und 20 Zeichen sein.</clr-control-error>
+                </clr-input-container>
+              </div>
+              <div class="dataLine">
+                <p class="attribute">Email:</p>
+                <clr-input-container class="userDatainput">
+                  <label class="clr-sr-only">Email</label>
+                  <input type="text" name="email" clrInput placeholder="Email" [value]="email" />
+                  <clr-control-error>Emails stimmen nicht überein.</clr-control-error>
+                </clr-input-container>
+              </div>
+              <div class="dataLine">
+                <p class="attribute">Passwort:</p>
+                <clr-password-container class="userDatainput">
+                  <label class="clr-sr-only">Password</label>
+                  <input type="password" name="password" clrPassword placeholder="Passwort" formControlName="password" />
+                  <clr-control-error>Passwort muss mindesten 8 Zeichen haben.</clr-control-error>
+                </clr-password-container>
+              </div>
+              <div class="dataLine">
+                <p class="attribute">Passwort:</p>
+                <clr-password-container class="userDatainput">
+                  <label class="clr-sr-only">Password wiederholen</label>
+                  <input type="password" name="passwordrepeat" clrPassword placeholder="Passwort wiederholen" formControlName="passwordrepeat" />
+                  <clr-control-error>Passwörter stimmen nicht überein.</clr-control-error>
+                </clr-password-container>
+              </div>
+              <button type="submit" class="btn btn-primary updatebtn" (click)="update()" [disabled]="!isChanged()">Aktualisieren</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
