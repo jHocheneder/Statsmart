@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StatlistComponent } from './components/statlist/statlist.component';
 import { ArticleComponent } from './components/article/article.component';
+import { DataDetailComponent } from './components/data-detail/data-detail.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -39,7 +40,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     StatlistComponent,
-    ArticleComponent
+    ArticleComponent,
+    DataDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,6 @@
 
     <clr-dg-action-bar>
         <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-secondary" [disabled]="selected?.length == 0" (click)="analyze()"><clr-icon shape="pencil"></clr-icon>Analysieren</button>
             <!--<clr-icon shape="search"></clr-icon>-->
             <clr-input-container id="searchContainer">
                 <label class="clr-sr-only">Suchen</label>
@@ -29,33 +28,35 @@
     <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
     <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
 
-    <clr-dg-row *clrDgItems="let link of getSearchedData()" [clrDgItem]="link" (click)="getDownloadLink(link)">
+    <clr-dg-row *clrDgItems="let link of getSearchedData()" [clrDgItem]="link">
         <clr-dg-cell>{{link.id+1}}</clr-dg-cell>
         <clr-dg-cell>{{link.title}}</clr-dg-cell>
 
-        <clr-dg-row-detail *clrIfExpanded>
+        <clr-dg-row-detail *clrIfExpanded> 
             <ng-container ngProjectAs="clr-dg-row-detail">
-                <clr-dg-row-detail *clrIfExpanded>
+                <data-detail *clrIfExpanded [link]="link" ngProjectAs="clr-dg-row-detail"></data-detail>
+                <!--<clr-dg-row-detail *clrIfExpanded>
                     <div class="detail">
                         <clr-checkbox-container>
 
                             <clr-checkbox-wrapper *ngFor="let l of link.detail">
-                              <input type="checkbox" clrCheckbox name="options" [value]="l.link" />
+                              <input type="checkbox" clrCheckbox name="options" [value]="l.link" [(ngModel)]="l.selected" />
                               <label>{{l.title}} Type: {{l.type}}</label>
                             </clr-checkbox-wrapper>
 
-
+                            
                             <clr-control-helper>Helper text</clr-control-helper>
                             <clr-control-error>This field is required!</clr-control-error>
                           </clr-checkbox-container>
-                        <!--<div *ngFor="let l of link.detail" >
+                          <button (click)="showSelected(l.detail)"></button>
+                        <div *ngFor="let l of link.detail" >
                             <div *ngIf="l.type === 'CSV'">
                                 {{l.title}} Type: {{l.type}}
                             </div>
-                        </div>-->
+                        </div>
                     </div>
 
-                </clr-dg-row-detail>
+                </clr-dg-row-detail>-->
                 </ng-container>
         </clr-dg-row-detail>
     </clr-dg-row>
