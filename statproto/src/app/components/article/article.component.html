@@ -1,3 +1,6 @@
-<h1>{{statisticArticle.title}} posted by {{statisticArticle.username}}</h1>
-<button class="btn btn-link" (click)="showArticle()">Anzeigen</button>
-<div [chart]="linechart"></div>
+
+<div class="card small-width">
+    <div class="card-header">{{statisticArticle.title}} posted by {{statisticArticle.username}}</div>
+    <div class="card-block"><div [chart]="linechart"></div></div>
+    <div class="card-footer"><button class="btn btn-link" (click)="showArticle()">Anzeigen</button></div>
+</div>
