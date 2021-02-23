@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { sha512 } from 'js-sha512';
+import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
 import { matchOtherValidator } from 'src/app/validators/match';
 
@@ -20,7 +21,8 @@ export class ProfilComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpService
+    private http: HttpService,
+    public data: DataService
     ) { }
 
   ngOnInit(): void {
@@ -30,6 +32,8 @@ export class ProfilComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
       passwordrepeat: new FormControl('', [Validators.required, matchOtherValidator('password')])
     });
+
+    this.data.findUserStatistics()
   }
 
   getUserData(){

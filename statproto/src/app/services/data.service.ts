@@ -12,6 +12,7 @@ export class DataService {
 
   selected: Link[] = []
   statistics: Array<Statistic>;
+  userstatistics: Array<Statistic>;
   ratings: Array<Rating>;
   sLink: SavedLink;
   
@@ -52,6 +53,12 @@ export class DataService {
     this.http.getAllStatistics().subscribe(data => {
       this.statistics = data
       console.log(this.statistics)
+    })
+  }
+  findUserStatistics(){
+    this.http.getUserStatistics().subscribe(data => {
+      this.userstatistics = data
+      console.log(this.userstatistics)
     })
   }
   getValueLinks(paraid){

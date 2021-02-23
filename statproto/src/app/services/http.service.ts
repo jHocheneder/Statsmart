@@ -36,6 +36,13 @@ export class HttpService {
     return this.http.get<Statistic[]>(baseUrl + 'api/findAllStatistic');
   }
 
+  public getUserStatistics(){
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
+    console.log("getting User Stats")
+    return this.http.get<Statistic[]>(baseUrl + 'statistic/findStatisticsByUser', {headers});
+  }
+
    public getValueLinks(p_statsid){
     console.log("made it to the savedLinks")
     return this.http.get<any>(baseUrl + 'api/getLinksForStatistics/' + p_statsid);
