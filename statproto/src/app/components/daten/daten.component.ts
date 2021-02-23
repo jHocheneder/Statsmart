@@ -35,7 +35,8 @@ export class DatenComponent implements OnInit {
     ["Einwohner", "Menschen", "Bürger"],
     ["Handel", "Geschäft", "Kauf", "Käufer"],
     ["Engerwitzdorf"],
-    ["Wirtschaft", "Unternehmen"]
+    ["Wirtschaft", "Unternehmen"],
+    ["Energie", "Strom", "Kraft"]
   ]
   
   ngOnInit(): void {
