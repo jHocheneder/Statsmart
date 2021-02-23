@@ -13,7 +13,7 @@
         </div>
     </div>
 </div>
-<clr-datagrid id="datagrid" [(clrDgSelected)]="selected" [clrDgRowSelection]="true">
+<clr-datagrid id="datagrid">
 
     <clr-dg-action-bar>
         <div class="btn-group">
@@ -29,19 +29,27 @@
     <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
     <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
 
-    <clr-dg-row *clrDgItems="let link of getSearchedData()" [clrDgItem]="link" [clrDgSelectable]="locked(link)" (click)="getDownloadLink(link)">
+    <clr-dg-row *clrDgItems="let link of getSearchedData()" [clrDgItem]="link" (click)="getDownloadLink(link)">
         <clr-dg-cell>{{link.id+1}}</clr-dg-cell>
         <clr-dg-cell>{{link.title}}</clr-dg-cell>
 
         <clr-dg-row-detail *clrIfExpanded>
-            <ng-container ngProjectAs="clr-dg-row-detail" *ngIf="selected.includes(link)">
+            <ng-container ngProjectAs="clr-dg-row-detail">
                 <clr-dg-row-detail *clrIfExpanded>
                     <div class="detail">
-                        <div *ngFor="let l of link.detail" >
+                        <clr-checkbox-container>
+                            <clr-checkbox-wrapper *ngFor="let l of link.detail">
+                              <input type="checkbox" clrCheckbox name="options" [value]="l.link" />
+                              <label>{{l.title}} Type: {{l.type}}</label>
+                            </clr-checkbox-wrapper>
+                            <clr-control-helper>Helper text</clr-control-helper>
+                            <clr-control-error>This field is required!</clr-control-error>
+                          </clr-checkbox-container>
+                        <!--<div *ngFor="let l of link.detail" >
                             <div *ngIf="l.type === 'CSV'">
                                 {{l.title}} Type: {{l.type}}
                             </div>
-                        </div>
+                        </div>-->
                     </div>
 
                 </clr-dg-row-detail>
