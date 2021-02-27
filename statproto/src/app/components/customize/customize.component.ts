@@ -183,7 +183,7 @@ export class CustomizeComponent implements OnInit {
 
     this.http.getErrorRate(this.addStatistic.link1, this.addStatistic.link2, this.addStatistic.yValue1, this.addStatistic.yValue2).subscribe(data => {
       this.addStatistic.errorRate = data.errorRate
-      this.errorRate = Math.floor(data.errorRate*100)
+      this.errorRate = Math.floor(Math.abs(data.errorRate)*100)
     })
    
     console.log(this.currentTitle)
