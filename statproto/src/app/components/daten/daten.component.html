@@ -7,7 +7,7 @@
             </div>
             <div class="card-block">
                 <div class="card-text">
-                    <a *ngFor="let t of topics; let i = index" (click)="getTopicData(i)"> {{ t[0] }} <br></a>
+                    <a *ngFor="let t of topics; let i = index" (click)="getTopicData(i)" class="topics"> {{ t[0] }} <br></a>
                 </div>
             </div>
         </div>

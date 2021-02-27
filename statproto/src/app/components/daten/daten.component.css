@@ -18,7 +18,8 @@
     width: 50vw;
 }
 
-#topics {
+.topics {
+    cursor: pointer;
 }
 
 .clr-row {
