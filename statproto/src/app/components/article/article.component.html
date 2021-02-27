@@ -1,5 +1,13 @@
 
 <div class="card small-width">
     <div class="card-header">{{statisticArticle.title}} posted by {{statisticArticle.username}}</div>
+    <div class="card-block">
+
+        <div class="card-text">
+            {{statisticArticle.description}}
+        </div>
+      </div>
+
+   
     <div class="card-block"><div [chart]="linechart"></div></div>
 </div>
