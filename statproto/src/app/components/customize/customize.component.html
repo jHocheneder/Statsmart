@@ -1,10 +1,11 @@
 <div id="customizebody">
-    <input clrInput placeholder="Titel" name="titel" [(ngModel)]="currentTitle" class="align-content" *ngIf="isLogin()"/>
+    <input clrInput placeholder="Titel" name="titel" [(ngModel)]="currentTitle" class="align-content" id="statTitle" *ngIf="isLogin()"/>
+    <textarea clrTextarea [(ngModel)]="description" id="statDesc" name="description" placeholder="Beschreibung"></textarea>
     <div class="clr-col-lg-12 clr-col-12 axes">
         <div class="card">
             <div class="card-block">
                 <h3 class="card-title">Wähle eine Spalte für die x-Achse aus</h3>
-                <input clrInput placeholder="" name="xtitel" [(ngModel)]="currentXTitle" class="align-content" *ngIf="isLogin()"/>
+                <input clrInput placeholder="Titel X-Achse" name="xtitel" [(ngModel)]="currentXTitle" class="align-content" *ngIf="isLogin()"/>
                     <select clrSelect name="options" [(ngModel)]="x" >
                         <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
                     </select>
@@ -16,7 +17,7 @@
         <div class="card">
             <div class="card-block">
                 <h3 class="card-title">Wähle eine Spalte für die erste y-Achse aus</h3>
-                <input clrInput placeholder="" name="ytitel1" [(ngModel)]="currentYTitle1" class="align-content" *ngIf="isLogin()"/>
+                <input clrInput placeholder="Titel 1. Y-Achse" name="ytitel1" [(ngModel)]="currentYTitle1" class="align-content" *ngIf="isLogin()"/>
                     <select clrSelect name="options" [(ngModel)]="y1">
                         <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
                     </select>
@@ -28,7 +29,7 @@
         <div class="card">
             <div class="card-block">
                 <h3 class="card-title">Wähle eine Spalte für die zweite y-Achse aus</h3>
-                <input clrInput placeholder="" name="ytitel2" [(ngModel)]="currentYTitle2" class="align-content" *ngIf="isLogin()"/>
+                <input clrInput placeholder="Titel 2. Y-Achse" name="ytitel2" [(ngModel)]="currentYTitle2" class="align-content" *ngIf="isLogin()"/>
                     <select clrSelect name="options" [(ngModel)]="y2">
                         <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
                     </select>
@@ -38,8 +39,11 @@
             </div>
         </div>
     </div>
+    <div id="showAndError">
+        <button class="btn btn-link" (click)="showData()">Anzeigen</button>
+        <p *ngIf="addStatistic.errorRate">Korrelationsrate: {{ errorRate }} %</p>
+    </div>
     
-    <button class="btn btn-link" (click)="showData()">Anzeigen</button>
     <div [chart]="linechart" ></div>
     <button *ngIf="isLogin()" class="btn btn-success" (click)="saveData()">Speichern</button>
 </div>

@@ -85,12 +85,14 @@ export class HttpService {
     return this.http.post(baseUrl + "statistic/updateUserData", updBody, {headers})
   }
 
-  public getAllErrorRates(link1: string, link2: string){
+  public getErrorRate(link1: string, link2: string, value1: string, value2: string){
     let body = {
       url1: link1,
-      url2: link2
+      url2: link2,
+      column1: value1,
+      column2: value2
     }
 
-    return this.http.post<any>(pythonBaseUrl+'analyze_two_files', body);
+    return this.http.post<any>(pythonBaseUrl+'calculateErrorRate', body);
   }
 }
