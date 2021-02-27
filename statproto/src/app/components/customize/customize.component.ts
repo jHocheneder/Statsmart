@@ -53,8 +53,14 @@ export class CustomizeComponent implements OnInit {
 
   ngOnInit(): void {
     this.selected = this.data.selected;
-    
+    this.getErrorRates()
     this.getDownloadLink()
+  }
+
+  getErrorRates(){
+    this.http.getAllErrorRates(this.selected[0].link, this.selected[1].link).subscribe(data => {
+      console.log(data)
+    })
   }
 
   getDownloadLink() {
