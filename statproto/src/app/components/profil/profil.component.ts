@@ -62,5 +62,8 @@ export class ProfilComponent implements OnInit {
       })
     }
   }
+  saveForArticle(rowstat){
+    this.data.savedStatistic  = rowstat;
+  }
   
 }
