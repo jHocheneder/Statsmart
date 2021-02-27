@@ -38,6 +38,10 @@ export class DatenComponent implements OnInit {
     ["Wirtschaft", "Unternehmen"],
     ["Energie", "Strom", "Kraft"]
   ]
+
+  getSelected(l){
+    console.log(l)
+  }
   
   ngOnInit(): void {
     this.getList()

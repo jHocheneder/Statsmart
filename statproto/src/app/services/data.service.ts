@@ -11,8 +11,7 @@ import { SavedLink } from '../models/savedLink';
 export class DataService {
 
   selected: Link[] = []
-  statistics: Array<Statistic>;
-  userstatistics: Array<Statistic>;
+  statistics: Array<Statistic> = [];
   ratings: Array<Rating>;
   sLink: SavedLink;
   

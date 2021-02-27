@@ -32,14 +32,18 @@ export class CustomizeComponent implements OnInit {
   currentYTitle1 = ""
   currentYTitle2 = ""
 
-  url = "";
+  url: string[] = [];
 
   addStatistic: Statistic = new Statistic();
   headers: string[][] = [[]];
 
   select = []
   
-  statData
+  statData: string[][]
+
+  csv1: string[][] = []
+  csv2: string[][] = []
+  
 
   constructor(private chart: ChartComponent,
     private route: ActivatedRoute,
@@ -54,18 +58,29 @@ export class CustomizeComponent implements OnInit {
   }
 
   getDownloadLink() {
+    let x = 0
     for(let i = 0; i<this.selected.length; i++){
-      this.http.getDownloadLink(this.selected[i].detail[0].link).subscribe(data=>{
-        this.url = data;
+      this.http.getDownloadLink(this.selected[i].link).subscribe(data=>{
+        this.url.push(data);
+        console.log(this.url)
         this.http.downloadCSV(data).subscribe(csv=>{
-          for(let i = 0; i<csv[0].length; i++){
+
+          if(this.statData){
+            for(let j = 0; j < this.statData.length; j++){
+              this.statData[j].push(...csv[j])
+            }
+          } else {
             this.statData = csv
+          }
+          console.log(this.statData)
+          for(let i = 0; i<csv[0].length; i++){
             let a = {
-              id: i,
+              id: x,
               value: csv[0][i]
             }
             //this.headers[0].push(csv[0][i])
             this.select.push(a)
+            x++
           }
         })
       })
@@ -148,8 +163,17 @@ export class CustomizeComponent implements OnInit {
     this.addStatistic.errorRate = 0.7
     //this.addStatistic.title = this.statData[0][this.x]+ " rest deleted "
     this.addStatistic.title = "standardtitel"
-    this.addStatistic.link1 = this.url
-    this.addStatistic.link2 = this.url
+    console.log(this.y1)
+    if(+this.y1 >= this.statData[0].length/2){
+      this.addStatistic.link1 = this.url[1]
+    } else {
+      this.addStatistic.link1 = this.url[0]
+    }
+    if(+this.y2 < this.statData[0].length/2){
+      this.addStatistic.link2 = this.url[0]
+    } else {
+      this.addStatistic.link2 = this.url[1]
+    }
     this.addStatistic.yTitle1 = this.currentYTitle1
     this.addStatistic.yValue1 = this.statData[0][this.y1]
     this.addStatistic.yTitle2 = this.currentYTitle2

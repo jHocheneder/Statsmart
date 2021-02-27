@@ -1,0 +1,10 @@
+<div class="detail">
+    <button type="button" class="btn btn-sm btn-secondary" (click)="analyze()"><clr-icon shape="pencil"></clr-icon>Analysieren</button>
+    <clr-checkbox-container>
+        <clr-checkbox-wrapper *ngFor="let l of link.detail; let i = index">
+          <input type="checkbox" clrCheckbox name="options" [value]="l.link" [(ngModel)]="l.selected" [disabled]="areMaxSelected(i)" />
+          <label>{{l.title}} Type: {{l.type}}</label>
+        </clr-checkbox-wrapper>
+
+      </clr-checkbox-container>
+</div>
