@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Rating } from '../models/rating';
 import { SavedLink } from '../models/savedLink';
 
-const baseUrl = 'http://localhost:8080/'
+const baseUrl = 'http://195.128.100.64:8085/'
 
 @Injectable({
   providedIn: 'root'
