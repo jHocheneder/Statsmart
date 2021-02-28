@@ -28,6 +28,8 @@ export class CustomizeComponent implements OnInit {
   title = ""
   currentTitle = ""
 
+  description = ""
+
   currentXTitle = ""
   currentYTitle1 = ""
   currentYTitle2 = ""
@@ -44,6 +46,7 @@ export class CustomizeComponent implements OnInit {
   csv1: string[][] = []
   csv2: string[][] = []
   
+  errorRate = 0.0
 
   constructor(private chart: ChartComponent,
     private route: ActivatedRoute,
@@ -53,7 +56,6 @@ export class CustomizeComponent implements OnInit {
 
   ngOnInit(): void {
     this.selected = this.data.selected;
-    
     this.getDownloadLink()
   }
 
@@ -159,7 +161,6 @@ export class CustomizeComponent implements OnInit {
     this.addStatistic.chartType = "line"
     this.addStatistic.xTitle = this.currentXTitle
     
-    this.addStatistic.description = "Diagramm:" + this.statData[0][this.y1] + " " + this.statData[0][this.y2]
     this.addStatistic.errorRate = 0.7
     //this.addStatistic.title = this.statData[0][this.x]+ " rest deleted "
     this.addStatistic.title = "standardtitel"
@@ -179,6 +180,11 @@ export class CustomizeComponent implements OnInit {
     this.addStatistic.yTitle2 = this.currentYTitle2
     this.addStatistic.yValue2 = this.statData[0][this.y2]
     this.addStatistic.xValue = this.statData[0][this.x];
+
+    this.http.getErrorRate(this.addStatistic.link1, this.addStatistic.link2, this.addStatistic.yValue1, this.addStatistic.yValue2).subscribe(data => {
+      this.addStatistic.errorRate = data.errorRate
+      this.errorRate = Math.floor(Math.abs(data.errorRate)*100)
+    })
    
     console.log(this.currentTitle)
     //this.addStatistic.Rating = 0
@@ -261,6 +267,10 @@ export class CustomizeComponent implements OnInit {
   saveData(){
     console.log(" adding" + this.addStatistic)
     console.log(this.currentTitle)
+    this.addStatistic.description = this.description
+    if(this.addStatistic.description == ""){
+      this.addStatistic.description = "Diagramm:" + this.statData[0][this.y1] + " " + this.statData[0][this.y2]
+    }
     this.addStatistic.title = this.currentTitle
     this.data.insertStatistic(this.addStatistic);
     console.log(this.addStatistic)

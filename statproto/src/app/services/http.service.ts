@@ -8,6 +8,8 @@ import { SavedLink } from '../models/savedLink';
 
 const baseUrl = 'http://195.128.100.64:8085/'
 
+const pythonBaseUrl = 'http://195.128.100.64:8000/'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -81,5 +83,16 @@ export class HttpService {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 
     return this.http.post(baseUrl + "statistic/updateUserData", updBody, {headers})
+  }
+
+  public getErrorRate(link1: string, link2: string, value1: string, value2: string){
+    let body = {
+      url1: link1,
+      url2: link2,
+      column1: value1,
+      column2: value2
+    }
+
+    return this.http.post<any>(pythonBaseUrl+'calculateErrorRate', body);
   }
 }
