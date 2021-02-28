@@ -1,6 +1,6 @@
 <div id="customizebody">
     <input clrInput placeholder="Titel" name="titel" [(ngModel)]="currentTitle" class="align-content" id="statTitle" *ngIf="isLogin()"/>
-    <textarea clrTextarea [(ngModel)]="description" id="statDesc" name="description" placeholder="Beschreibung"></textarea>
+    <textarea clrTextarea [(ngModel)]="description" id="statDesc" name="description" placeholder="Beschreibung" *ngIf="isLogin()"></textarea>
     <div class="clr-col-lg-12 clr-col-12 axes">
         <div class="card">
             <div class="card-block">

@@ -56,7 +56,15 @@ export class CustomizeComponent implements OnInit {
 
   ngOnInit(): void {
     this.selected = this.data.selected;
+    
     this.getDownloadLink()
+  }
+
+  getAllErrorRates(){
+    console.log("Error Rates")
+    this.http.getAllErrorRates(this.url[0], this.url[1]).subscribe(data => {
+      console.log(typeof(data))
+    })
   }
 
   getDownloadLink() {
@@ -65,6 +73,9 @@ export class CustomizeComponent implements OnInit {
       this.http.getDownloadLink(this.selected[i].link).subscribe(data=>{
         this.url.push(data);
         console.log(this.url)
+        if(this.url.length == 2){
+          //this.getAllErrorRates()
+        }
         this.http.downloadCSV(data).subscribe(csv=>{
 
           if(this.statData){

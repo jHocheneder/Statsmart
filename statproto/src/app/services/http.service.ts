@@ -95,4 +95,15 @@ export class HttpService {
 
     return this.http.post<any>(pythonBaseUrl+'calculateErrorRate', body);
   }
+
+  public getAllErrorRates(link1: string, link2){
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+
+    let body = {
+      url1: link1,
+      url2: link2
+    }
+
+    return this.http.post<any>(pythonBaseUrl+'analyze_two_files', body, {headers});
+  }
 }
