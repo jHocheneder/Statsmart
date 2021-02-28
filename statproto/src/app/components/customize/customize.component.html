@@ -31,7 +31,7 @@
                 <h3 class="card-title">Wähle eine Spalte für die zweite y-Achse aus</h3>
                 <input clrInput placeholder="Titel 2. Y-Achse" name="ytitel2" [(ngModel)]="currentYTitle2" class="align-content" *ngIf="isLogin()"/>
                     <select clrSelect name="options" [(ngModel)]="y2">
-                        <option *ngFor="let header of select" [ngValue]="header.id">{{header.value}}</option>
+                        <option *ngFor="let header of select" [ngValue]="header.id" [style.background-color]="getBackgroundColor(header.value)">{{header.value}}</option>
                     </select>
             </div>
             <div class="card-footer">

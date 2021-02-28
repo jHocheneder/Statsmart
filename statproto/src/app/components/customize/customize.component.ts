@@ -48,6 +48,8 @@ export class CustomizeComponent implements OnInit {
   
   errorRate = 0.0
 
+  allErrorRates
+
   constructor(private chart: ChartComponent,
     private route: ActivatedRoute,
     private data: DataService,
@@ -60,10 +62,37 @@ export class CustomizeComponent implements OnInit {
     this.getDownloadLink()
   }
 
+  getBackgroundColor(select: string){
+    let s = ""
+    for(let p = 0; p < this.select.length; p++){
+      if(this.y1 == this.select[p].id){
+        s = this.select[p].value
+      }
+    }
+    for(let d in this.allErrorRates){
+      if(s == d) {
+        for(let i = 0; i < this.allErrorRates[d].length; i++){
+          for(let key in this.allErrorRates[d][i]){
+            if(key == select){
+              var hue=((1-Math.abs(this.allErrorRates[d][i][key]))*120).toString(10);
+              return ["hsl(",hue,",60%,45%)"].join("");
+            }
+            
+          }
+  
+          //console.log(data[d][i].key() + "" + data[d][i].value())
+        }
+      }
+      
+    }
+
+    return '#ffffff'
+  }
+
   getAllErrorRates(){
     console.log("Error Rates")
     this.http.getAllErrorRates(this.url[0], this.url[1]).subscribe(data => {
-      console.log(typeof(data))
+      this.allErrorRates = data
     })
   }
 
@@ -72,9 +101,8 @@ export class CustomizeComponent implements OnInit {
     for(let i = 0; i<this.selected.length; i++){
       this.http.getDownloadLink(this.selected[i].link).subscribe(data=>{
         this.url.push(data);
-        console.log(this.url)
         if(this.url.length == 2){
-          //this.getAllErrorRates()
+          this.getAllErrorRates()
         }
         this.http.downloadCSV(data).subscribe(csv=>{
 
@@ -85,7 +113,6 @@ export class CustomizeComponent implements OnInit {
           } else {
             this.statData = csv
           }
-          console.log(this.statData)
           for(let i = 0; i<csv[0].length; i++){
             let a = {
               id: x,
@@ -108,7 +135,6 @@ export class CustomizeComponent implements OnInit {
     if(n.includes(",")){
       n = n.split(".").join("")
       n = n.replace(",",".")
-      console.log(n)
     } else {
       if(n.includes(".")){
         let a = n.split(".")
@@ -150,15 +176,12 @@ export class CustomizeComponent implements OnInit {
       }
       let y1=this.autoParse(this.statData[i][this.y1])
       if(y1){
-        console.log("Ausgangswert:")
-        console.log("y1: "+y1)
         this.arrayy1.push(+y1)
       } else {
         this.arrayy1.push(this.statData[i][this.y1])
       }
       let y2 = this.autoParse(this.statData[i][this.y2])
       if(y2){
-        console.log("y2: "+y2)
         this.arrayy2.push(+y2)
       } else {
         this.arrayy2.push(this.statData[i][this.y2])
@@ -175,7 +198,6 @@ export class CustomizeComponent implements OnInit {
     this.addStatistic.errorRate = 0.7
     //this.addStatistic.title = this.statData[0][this.x]+ " rest deleted "
     this.addStatistic.title = "standardtitel"
-    console.log(this.y1)
     if(+this.y1 >= this.statData[0].length/2){
       this.addStatistic.link1 = this.url[1]
     } else {
@@ -197,15 +219,6 @@ export class CustomizeComponent implements OnInit {
       this.errorRate = Math.floor(Math.abs(data.errorRate)*100)
     })
    
-    console.log(this.currentTitle)
-    //this.addStatistic.Rating = 0
-
-    console.log(this.statData[0][this.y2]);
-
-    console.log( "Statistic Array Initialization proceed" )
-    console.log(this.arrayx)
-    console.log(this.arrayy1)
-    console.log(this.arrayy2)
     
     this.linechart = new Chart({
       title: {
@@ -276,14 +289,11 @@ export class CustomizeComponent implements OnInit {
   }
 
   saveData(){
-    console.log(" adding" + this.addStatistic)
-    console.log(this.currentTitle)
     this.addStatistic.description = this.description
     if(this.addStatistic.description == ""){
       this.addStatistic.description = "Diagramm:" + this.statData[0][this.y1] + " " + this.statData[0][this.y2]
     }
     this.addStatistic.title = this.currentTitle
     this.data.insertStatistic(this.addStatistic);
-    console.log(this.addStatistic)
   }
 }

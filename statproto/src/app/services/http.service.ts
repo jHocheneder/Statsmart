@@ -96,7 +96,7 @@ export class HttpService {
     return this.http.post<any>(pythonBaseUrl+'calculateErrorRate', body);
   }
 
-  public getAllErrorRates(link1: string, link2){
+  public getAllErrorRates(link1: string, link2: string){
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
 
     let body = {
@@ -104,6 +104,6 @@ export class HttpService {
       url2: link2
     }
 
-    return this.http.post<any>(pythonBaseUrl+'analyze_two_files', body, {headers});
+    return this.http.post(pythonBaseUrl+'analyze_two_files', body,  { responseType: 'json'});
   }
 }
