@@ -100,12 +100,13 @@ export class CustomizeComponent implements OnInit {
     let x = 0
     for(let i = 0; i<this.selected.length; i++){
       this.http.getDownloadLink(this.selected[i].link).subscribe(data=>{
+        console.log(data)
         this.url.push(data);
         if(this.url.length == 2){
           this.getAllErrorRates()
         }
         this.http.downloadCSV(data).subscribe(csv=>{
-
+          console.log(csv)
           if(this.statData){
             for(let j = 0; j < this.statData.length; j++){
               this.statData[j].push(...csv[j])

@@ -36,7 +36,8 @@ export class DatenComponent implements OnInit {
     ["Handel", "Geschäft", "Kauf", "Käufer"],
     ["Engerwitzdorf"],
     ["Wirtschaft", "Unternehmen"],
-    ["Energie", "Strom", "Kraft"]
+    ["Energie", "Strom", "Kraft"],
+    ["Linz"]
   ]
 
   getSelected(l){
