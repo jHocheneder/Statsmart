@@ -28,6 +28,9 @@ export class CustomizeComponent implements OnInit {
   title = ""
   currentTitle = ""
 
+  y1Title = "-"
+  y2Title = "-"
+
   description = ""
 
   currentXTitle = ""
@@ -102,22 +105,35 @@ export class CustomizeComponent implements OnInit {
       this.http.getDownloadLink(this.selected[i].link).subscribe(data=>{
         console.log(data)
         this.url.push(data);
+        let linkShort = ""
         if(this.url.length == 2){
           this.getAllErrorRates()
+          this.y2Title = data.split("/")[data.split("/").length-1]
+          linkShort = "Y2"
+        }
+        else {
+          this.y1Title = data.split("/")[data.split("/").length-1]
+          linkShort = "Y1"
         }
         this.http.downloadCSV(data).subscribe(csv=>{
           console.log(csv)
           if(this.statData){
             for(let j = 0; j < this.statData.length; j++){
-              this.statData[j].push(...csv[j])
+              if(csv[j]){
+                console.log(csv[j])
+                this.statData[j].push(...csv[j])
+              }
             }
           } else {
             this.statData = csv
           }
           for(let i = 0; i<csv[0].length; i++){
+            console.log(linkShort)
             let a = {
               id: x,
-              value: csv[0][i]
+              value: csv[0][i],
+              datei: linkShort
+
             }
             //this.headers[0].push(csv[0][i])
             this.select.push(a)
@@ -133,32 +149,37 @@ export class CustomizeComponent implements OnInit {
   }
 
   autoParse(n: string){
-    if(n.includes(",")){
-      n = n.split(".").join("")
-      n = n.replace(",",".")
-    } else {
-      if(n.includes(".")){
-        let a = n.split(".")
-        if(a.length > 2){
-          n = a.join("");
-        } else {
-          let isComma = false;
-          for(let i = 0; i < a.length; i++){
-            if(a[i].length != 3){
-              isComma = true
+    if(n){
+      if(n.includes(",")){
+        n = n.split(".").join("")
+        n = n.replace(",",".")
+      } else {
+        if(n.includes(".")){
+          let a = n.split(".")
+          if(a.length > 2){
+            n = a.join("");
+          } else {
+            let isComma = false;
+            for(let i = 0; i < a.length; i++){
+              if(a[i].length != 3){
+                isComma = true
+              }
             }
-          }
-          if(!isComma){
-            n = a.join("")
+            if(!isComma){
+              n = a.join("")
+            }
           }
         }
       }
-    }
-    if(+n){
-      return +n
+      if(+n){
+        return +n
+      }
+      else {
+        return n
+      }
     }
     else {
-      return n
+      return 0
     }
   }
 
